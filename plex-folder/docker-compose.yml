@@ -1,0 +1,28 @@
+services:
+  plex:
+    image: linuxserver/plex:latest 
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=UTC
+      - VERSION=docker
+      - PLEX_CLAIM= claim-9kz1xe_qrJAVD2MPsijm
+    volumes:
+      - type: bind
+        source: /mnt/e/Plex-data/config
+        target: /config
+      - type: bind
+        source: /mnt/e/Plex-data/TV
+        target: /tv
+      - type: bind
+        source: /mnt/e/Plex-data/Movies
+        target: /movies
+      - type: bind
+        source: /mnt/e/Plex-data/Game-Videos
+        target: /game-videos
+      - type: bind
+        source: /mnt/e/Plex-data/anime
+        target: /anime
+    restart: unless-stopped
